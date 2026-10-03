@@ -10,3 +10,6 @@ output "private_subnets" {
 output "databases_subnets" {
   value = module.main.databases_subnets
 }
+output "igw" {
+  value = module.main.igw
+}

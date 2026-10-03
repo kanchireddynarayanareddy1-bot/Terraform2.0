@@ -1,5 +1,5 @@
 module "main" {
-    # source = "../vpc-module"
+    #source = "../vpc-module"
     source = "git::https://github.com/kanchireddynarayanareddy1-bot/Terraform2.0.git//vpc-module?ref=main"
 # Main VPC configuration
     vpc_cidr = var.vpc_cidr
