@@ -17,7 +17,7 @@ variable "project_name" {
     default = "roboshop"
 }
 
-variable "env" {
+variable "environment" {
     type = string
     default = "dev"
 }

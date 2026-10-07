@@ -21,13 +21,17 @@ data "aws_ami" "chinna" {
   }
 }
 
-output "ami_id" {
-  value = data.aws_ami.chinna.id
-}
+# output "ami_id" {
+#   value = data.aws_ami.chinna.id
+# }
 
 # data aws_instance "mongodb" {
 #     instance_id = "i-04ee0cc9f539dfbea"
 # }
 # output "mongodb_private_ip" {
 #     value = data.aws_instance.mongodb.private_ip
+# }
+
+# data "aws_security_groups" "bastion_sg" {
+#   name = "/${var.project_name}/${var.environment}/bastion/sg_name"
 # }
