@@ -122,6 +122,18 @@ resource "aws_nat_gateway" "nat_gw" {
     )
   depends_on = [aws_internet_gateway.gw]  
 }
+#private route
+resource "aws_route" "private_route" {
+  route_table_id            = aws_route_table.private_route_table.id
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.nat_gw.id
+}
+#databases route
+resource "aws_route" "databases_route" {
+  route_table_id            = aws_route_table.databases_route_table.id
+  destination_cidr_block    = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.nat_gw.id
+}
 
 #route table associations
 resource "aws_route_table_association" "public_subnet_association" {

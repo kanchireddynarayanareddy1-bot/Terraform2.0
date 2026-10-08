@@ -3,6 +3,7 @@ resource "aws_instance" "bastion" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.bastion_sg]
   subnet_id = local.public_subnets
+  user_data = file("terraform.sh")
 
   tags = merge(
     local.common_tags,
