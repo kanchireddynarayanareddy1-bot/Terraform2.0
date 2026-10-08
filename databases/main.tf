@@ -32,7 +32,7 @@ resource "terraform_data" "mongodb" {
     host = aws_instance.mongodb.private_ip
     }
 }
-redis
+#redis
 resource "aws_instance" "redis" {
   ami = local.ami_id
   instance_type = "t3.micro"
