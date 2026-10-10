@@ -11,7 +11,8 @@ resource "aws_instance" "mongodb" {
   )
 
 }
-resource "terraform_data" "mongodb" {
+# null_resource depricated in terraform 0.12, so using terraform_data instead of null_resource
+resource "terraform_data" "mongodb" { 
    triggers_replace = [
     aws_instance.mongodb.id
    ]
