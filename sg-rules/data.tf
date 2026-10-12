@@ -16,3 +16,6 @@ data "aws_ssm_parameter" "rabbitmq_sg_name" {
 data "aws_ssm_parameter" "frontend_sg_name" {
   name = "/${var.project_name}/${var.environment}/frontend/sg_name"
 }
+data "aws_ssm_parameter" "catalogue_sg_name" {
+  name = "/${var.project_name}/${var.environment}/catalogue/sg_name"
+}
