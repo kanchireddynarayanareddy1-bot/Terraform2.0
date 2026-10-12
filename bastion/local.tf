@@ -9,5 +9,4 @@ locals {
   bastion_sg=data.aws_ssm_parameter.bastion_sg_name.value
   public_subnets=split(",", data.aws_ssm_parameter.public_subnets.value)[0]
   ami_id=data.aws_ami.joindevops.id
-  
 }
