@@ -2,7 +2,6 @@ data "aws_ssm_parameter" "catalogue_sg" {
   name = "/${var.project_name}/${var.environment}/catalogue/sg_name"
 }
 data "aws_ssm_parameter" "private_subnets" {
-  type = "StringList"
  name  = "/${var.project_name}/${var.environment}/private_subnets"
 }
 data "aws_ami" "joindevops" {
