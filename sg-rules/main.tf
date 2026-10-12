@@ -52,3 +52,12 @@ resource "aws_security_group_rule" "catalogue-bastion" {
   to_port           = 22
   
 }
+resource "aws_security_group_rule" "mongodb-catalogue" {
+  type              = "ingress"
+  security_group_id = local.mongodb_sg  
+  source_security_group_id = local.catalogue_sg
+  from_port         = 27017
+  protocol       = "tcp"
+  to_port           = 27017
+  
+}
