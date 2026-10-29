@@ -12,6 +12,11 @@ resource "aws_instance" "bastion" {
       Name="${var.project_name}-${var.environment}-bastion"
     }
   )
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3"
+    delete_on_termination = true
+  }
 }
  resource "aws_iam_instance_profile" "bastion" {
   name = "bastion"
