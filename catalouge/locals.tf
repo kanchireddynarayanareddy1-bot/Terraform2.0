@@ -7,6 +7,7 @@ locals{
   }
   catalogue_sg=data.aws_ssm_parameter.catalogue_sg.value
   private_subnet=split(",", data.aws_ssm_parameter.private_subnets.value)[0]
+  private_subnets=split(",", data.aws_ssm_parameter.private_subnets.value)
   ami_id=data.aws_ami.joindevops.id
   vpc_id=data.aws_ssm_parameter.vpc_id.value
 }
