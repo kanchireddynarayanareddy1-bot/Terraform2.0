@@ -5,7 +5,7 @@ resource "aws_lb" "backend_alb" {
   security_groups    = [local.sg_id]
   subnets            = local.private_subnets
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   
 
@@ -31,7 +31,7 @@ resource "aws_lb_listener" "backend_alb" {
     }
   }
 }
-resource "route53_record" "backend_alb" {
+resource "aws_route53_record" "backend_alb" {
   zone_id = var.zone_id
   name    = "*.backend-alb-${var.environment}.${var.dns_name}"
   type    = "A"

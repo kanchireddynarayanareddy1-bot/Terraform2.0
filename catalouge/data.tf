@@ -23,6 +23,9 @@ data "aws_ami" "joindevops" {
     values = ["hvm"]
   }
 }
+data "aws_ssm_parameter" "backend_lb_arn" {
+  name  = "/${var.project_name}/${var.environment}/backend_lb_arn"
+}
 data "aws_ssm_parameter" "vpc_id" {
   name  = "/${var.project_name}/${var.environment}/vpc_id"
 }

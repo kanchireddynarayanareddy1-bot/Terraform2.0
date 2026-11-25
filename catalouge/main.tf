@@ -64,6 +64,8 @@ resource "aws_launch_template" "catalogue" {
   image_id      = aws_ami_from_instance.catalogue.id
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.catalogue_sg]
+  # when terraform apply again, a version will be created with new AMI Id
+  update_default_version = true
   tags = merge(
     local.common_tags,
     {
@@ -122,6 +124,13 @@ resource "aws_autoscaling_group" "catalogue" {
   timeouts {
     delete = "15m"
   }
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+    triggers = ["launch_template"]
+  }
 }
 resource "aws_autoscaling_policy" "catalogue" {
   autoscaling_group_name = aws_autoscaling_group.catalogue.name
@@ -135,4 +144,28 @@ resource "aws_autoscaling_policy" "catalogue" {
     
   }  
 }
+resource "aws_lb_listener_rule" "catalogue" {
+  listener_arn = local.backend_lb_arn
+  priority     = 10
 
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.catalogue.arn
+  }
+
+  condition {
+    host_header {
+      values = ["catalogue.backend-alb-${var.environment}.${var.dns_name}"]
+    }
+  }
+}
+resource "terraform_data" "catalogue_local" {
+   triggers_replace = [
+    aws_instance.catalogue.id
+   ]
+   depends_on = [ aws_autoscaling_policy.catalogue ]
+    provisioner "local-exec" {
+      command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id}"
+    }
+    
+}

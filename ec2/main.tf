@@ -2,7 +2,7 @@ resource "aws_instance" "terraform_instance" {
   count= length(var.instances)
   ami           = local.ami_id
   instance_type = local.instance_type
-  vpc_security_group_ids = [aws_security_group.terraform_sg.id]
+  vpc_security_group_ids = ["sg-0f028ef9d573ce8fe"]
 
   tags = merge(
     local.tags,
@@ -10,6 +10,7 @@ resource "aws_instance" "terraform_instance" {
       Name = "${local.common_name}-${var.instances[count.index]}"
     }
   )
+  user_data = file("userdata.sh")
 }
 resource "aws_security_group" "terraform_sg" {
   name = "terraform-sg"

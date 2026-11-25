@@ -22,9 +22,8 @@ variable "environment" {
     default = "dev"
 }
 
-variable "instances"{
-    type=list(string)
-    default=["mangodb"]
+ variable "instances"{
+    default = ["instance1", "instance2"]
 }
 variable "zone_id" {
     type = string

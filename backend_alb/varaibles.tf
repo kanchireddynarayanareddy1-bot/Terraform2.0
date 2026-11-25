@@ -5,8 +5,8 @@ variable "environment" {
   default = "dev"
 }
 variable "zone_id" {
- default = "Z00360111YCBT2EKROU2Y"
+ default = "Z0983967EFX0Q8MCTIII"
 }
 variable "dns_name" {
-  default = "chandrahasa.online"
+  default = "chinna.store"
 }

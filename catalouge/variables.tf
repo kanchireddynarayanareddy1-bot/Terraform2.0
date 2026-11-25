@@ -4,3 +4,6 @@ variable "project_name" {
 variable "environment" {
   default = "dev"
 }
+variable "dns_name" {
+  default = "chandrahasa.online"
+}
