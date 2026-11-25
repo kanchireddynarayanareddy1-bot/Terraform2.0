@@ -4,8 +4,8 @@
 # ansible-pull -U https://github.com/kanchireddynarayanareddy1-bot/terraform-ansible.git -e component=$component $component.yaml
 
 
-#!/bin/bash
-
+!/bin/bash
+set -e
 component=$1
 dnf install ansible -y
 #ansible-pull -U https://github.com/daws-86s/ansible-roboshop-roles-tf.git -e component=$component main.yaml

@@ -34,19 +34,19 @@ resource "terraform_data" "mongodb" {
     }
 }
 #redis
-resource "aws_instance" "redis" {
-  ami = local.ami_id
-  instance_type = "t3.micro"
-  vpc_security_group_ids = [local.redis]
-  subnet_id = local.databases_subnets
-  tags =merge(
-  local.common_tags,
-    {
-      Name="${var.project_name}-${var.environment}-redis"
-    }
-  )
+# resource "aws_instance" "redis" {
+#   ami = local.ami_id
+#   instance_type = "t3.micro"
+#   vpc_security_group_ids = [local.redis]
+#   subnet_id = local.databases_subnets
+#   tags =merge(
+#   local.common_tags,
+#     {
+#       Name="${var.project_name}-${var.environment}-redis"
+#     }
+#   )
 
-}
+# }
 # resource "terraform_data" "redis" {
 #    triggers_replace = [
 #     aws_instance.redis.id
